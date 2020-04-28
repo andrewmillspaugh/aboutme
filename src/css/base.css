@@ -1,0 +1,106 @@
+body {
+    background-color: hsla(110, 6%, 41%, 1);
+    font-family: "dm";
+    color: hsla(60, 21%, 89%, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body a {
+    text-decoration: none;
+    color: hsla(60, 21%, 89%, 1);
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    width: 100%;
+}
+
+#title {
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 36px;
+    text-align: center;
+}
+
+#subtitle {
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 24px;
+    text-align: center;
+}
+
+radar-chart {
+    height: 350px;
+}
+
+radar-chart text {
+    fill: hsla(60, 21%, 89%, 1);
+}
+
+radar-chart .level {
+    stroke: hsla(42, 61%, 78%, 0.1);
+    stroke-width: 1px;
+}
+
+radar-chart .axis {
+    stroke: hsla(42, 61%, 78%, 0.25);
+    stroke-width: 1px;
+}
+
+radar-chart .skillmap {
+    stroke-width: 2px;
+    stroke: hsla(42, 61%, 78%, 1);
+    fill: hsla(42, 61%, 78%, 0.25);
+}
+
+#social-links {
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#social-links > svg {
+    padding: 15px;
+}
+
+#social-links > svg path {
+    fill: hsla(42, 61%, 78%, 1);
+}
+
+#navigation-header {
+    width: 100%;
+    height: 60px;
+    padding-top: 50px;
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+}
+
+#navigation-header > a {
+    float: left;
+    margin-right: auto;
+}
+
+#navigation-header > nav > ul {
+    display: flex;
+}
+
+#navigation-header > nav > ul > li {
+    box-sizing: border-box;
+    display: list-item;
+    list-style: none;
+    padding: 20px;
+}
+
+#navigation-header > nav > ul > li > a {
+    box-sizing: border-box;
+}

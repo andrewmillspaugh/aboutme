@@ -1,0 +1,25 @@
+<header id='navigation-header'>
+    <a href="/" class="">
+        {{ navigation.home.text }}
+    </a>
+    <nav>
+        <ul>
+            {% for navpage in navigation.pages %}
+                {% set relAttribute = '' %}
+                {% set currentAttribute = '' %}
+
+                {% if navpage.rel %}
+                    {% set relAttribute = ' rel="' + item.rel + '"' %}
+                {% endif %}
+
+                {% if page.url == navpage.url %}
+                    {% set currentAttribute = ' aria-current="page"' %}
+                {% endif %}
+
+                <li class="nav__item">
+                    <a href="{{ navpage.url }}" {{ relAttribute | safe }} {{ currentAttribute | safe }}>{{ navpage.text }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>

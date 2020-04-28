@@ -1,0 +1,22 @@
+{
+    "home": {
+        "text": "> cd ~/andrewmillspaugh",
+        "url": "/",
+        "external": "false" 
+    },
+    "pages": [
+      {
+        "text": "/skills",
+        "url": "/skills"
+      },
+      {
+        "text": "/resume",
+        "url": "/resume"
+      },
+      {
+        "text": "/about",
+        "url": "/about"
+      }
+    ]
+  }
+  
