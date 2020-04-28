@@ -8,6 +8,7 @@ class RadarChart extends HTMLElement {
         this.fontSize = parseInt(getComputedStyle(this).fontSize)
         this.elements = {}
         window.addEventListener('resize', this.render.bind(this));
+        window.addEventListener('orientationchange', this.render.bind(this));
         this.render()
     }
 
@@ -23,46 +24,37 @@ class RadarChart extends HTMLElement {
             return [name, this.getAttribute(skill)]
         })
     }
-
-    get radius() {
-        const longestSkill = this.skills.reduce((prev, curr) => {
-            return prev.length > curr[0].length ? prev : curr[0]
-        }, '').length
-        const maxHeight = this.offsetHeight - 4 * this.fontSize;
-        const charWidth = this.fontSize * 0.5; // TODO: Improve this rough estimate
-        const maxWidth = this.offsetWidth - 2 * (longestSkill + 0.5) * charWidth;
-        return Math.min(maxHeight, maxWidth) / 2;
+    
+    get chartRadius() {
+        const charWidth = this.fontSize * 0.550; // TODO: Improve this rough estimate
+        console.log('the total radius is ' + this.totalRadius)
+        const maxRadiiPerAngle = this.skills.map((skill, index) => {
+            const skillWidth = skill[0].length * charWidth;
+            console.log(skillWidth)
+            const angle = Math.PI / 2 - index * 2 * Math.PI / this.skills.length;
+            const spacing = this.fontSize;
+            if (index == 0 | index/this.skills.length == 0.5) return this.offsetHeight / 2 - 2 * this.fontSize;
+            return (this.offsetWidth / 2 - skillWidth) / Math.abs(Math.cos(angle)) - spacing;
+        });
+        console.log(Math.min(...maxRadiiPerAngle))
+        return Math.min(...maxRadiiPerAngle);
     }
 
     get textRadius() {
-        return this.radius + this.fontSize / 2;
+        return this.chartRadius + this.fontSize;
     }
 
-    get yOffset() {
-        return this.offsetHeight / 2 - this.radius;
-    }
-
-    get xOffset() {
-        return this.offsetWidth / 2 - this.radius;
-    }
-
-    circleCoordinates(percentage, radius=this.radius) {
+    circleCoordinates(percentage, radius=this.chartRadius) {
         const x = Math.sin(2 * Math.PI * (0.5 - percentage)) * radius;
         const y = Math.cos(2 * Math.PI * (0.5 - percentage)) * radius;
         return { x, y }
     }
 
-    _onResize() {
-        this.elements.svg = this.elements.svg.attr('width', this.offsetWidth).attr('height', this.offsetHeight);
-        this.elements.group.attr('transform', `translate(${this.xOffset + this.radius}, ${this.yOffset + this.radius})`)
-    }
-
     renderSvg() {
         this.elements.svg = d3.select(this).selectAll('svg').data([1]).join('svg');
         this.elements.svg.attr('width', this.offsetWidth).attr('height', this.offsetHeight);
-
         this.elements.group = this.elements.svg.selectAll('g').data([1]).join('g');
-        this.elements.group.attr('transform', `translate(${this.xOffset + this.radius}, ${this.yOffset + this.radius})`)
+        this.elements.group.attr('transform', `translate(${this.offsetWidth / 2}, ${this.offsetHeight / 2})`)
     }
 
     renderAxes() {
