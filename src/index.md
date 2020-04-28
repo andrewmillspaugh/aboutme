@@ -14,7 +14,8 @@ eleventyNavigation:
 </div>
 <radar-chart 
     skill[architecture]=0.75 
-    skill[frontend]=0.4 
-    skill[backend]=0.8 
-    skill[bayesian-statistics]=0.4 
+    skill[frontend]=0.6
+    skill[backend]=0.8
+    skill[statistics]=0.4
+    skill[machine-learning]=0.4
     skill[infrastructure]=0.4 />

@@ -7,7 +7,7 @@ class RadarChart extends HTMLElement {
     connectedCallback() {
         this.fontSize = parseInt(getComputedStyle(this).fontSize)
         this.elements = {}
-        window.addEventListener('resize', this._onResize.bind(this));
+        window.addEventListener('resize', this.render.bind(this));
         this.render()
     }
 
@@ -58,23 +58,23 @@ class RadarChart extends HTMLElement {
     }
 
     renderSvg() {
-        const svgSelection = d3.select(this).selectAll('svg').data([1]);
-        this.elements.svg = svgSelection.enter().append('svg').attr('width', this.offsetWidth).attr('height', this.offsetHeight);
-        svgSelection.exit().remove()
+        this.elements.svg = d3.select(this).selectAll('svg').data([1]).join('svg');
+        this.elements.svg.attr('width', this.offsetWidth).attr('height', this.offsetHeight);
 
-        const groupSelection = this.elements.svg.selectAll('g').data([1]);
-        this.elements.group = groupSelection.enter().append('g').attr('transform', `translate(${this.xOffset + this.radius}, ${this.yOffset + this.radius})`)
-        groupSelection.exit().remove()
+        this.elements.group = this.elements.svg.selectAll('g').data([1]).join('g');
+        this.elements.group.attr('transform', `translate(${this.xOffset + this.radius}, ${this.yOffset + this.radius})`)
     }
 
     renderAxes() {
-        const selection = this.elements.group.selectAll('.axis').data(this.skills);
-        this.elements.axes = selection.enter().append('svg:line').classed('axis', true)
+        this.elements.axes = this.elements.group.selectAll('.axis').data(this.skills).join('svg:line');
+        this.elements.axes.classed('axis', true)
             .attrs((_, index) => {
                 const end = this.circleCoordinates(index / this.skills.length);
                 return { x1: 0, y1: 0, x2: end.x, y2: end.y }
             });
-        selection.enter().append('svg:text')
+        this.elements.labels = this.elements.group.selectAll('.label').data(this.skills).join('svg:text');
+        this.elements.labels.classed('label', true);
+        this.elements.labels
             .text(skill => skill[0])
             .attrs((_, index) => this.circleCoordinates(index / this.skills.length, this.textRadius))
             .attrs((_, index) => {
@@ -83,9 +83,7 @@ class RadarChart extends HTMLElement {
                 if (percentage < 0.5) return { 'text-anchor': 'start', 'dominant-baseline': 'middle' }
                 if (percentage == 0.5) return { 'text-anchor': 'middle', 'dominant-baseline': 'hanging' }
                 if (percentage > 0.5) return { 'text-anchor': 'end', 'dominant-baseline': 'middle'}
-            })
-            .attr('font-size', this.fontSize);
-        selection.exit().remove();
+            });
     }
 
     renderLevels() {
@@ -93,16 +91,13 @@ class RadarChart extends HTMLElement {
         const polygons = d3.range(1 / this.levels, 1, 1 / this.levels).map(level => {
             return vertices.map(vertex => vertex.x * level + ',' + vertex.y * level).join(' ')
         });
-        const selection = this.elements.group.selectAll('.level').data(polygons);
-        this.elements.levels = selection.enter().append('svg:polygon').classed('level', true)
-            .attr('points', polygon => polygon)
-            .attr('fill', 'none');
-        selection.exit().remove();
+        this.elements.levels = this.elements.group.selectAll('.level').data(polygons).join('polygon').classed('level', true);
+        this.elements.levels.attr('points', polygon => polygon).attr('fill', 'none');
     }
 
     renderSkillMap() {
-        const selection = this.elements.group.selectAll('.skillmap').data([this.skills.map(skill => skill[1])]);
-        this.elements.skillmap = selection.enter().append('svg:path').classed('skillmap', true);
+        this.elements.skillmap = this.elements.group.selectAll('.skillmap').data([this.skills.map(skill => skill[1])]).join('path');
+        this.elements.skillmap.classed('skillmap', true)
         d3.range(0, this.skills.length + 1).map((_, maxIndex) => {
             this.elements.skillmap = this.elements.skillmap
                 .transition()
@@ -116,7 +111,6 @@ class RadarChart extends HTMLElement {
                     }).join(' ') + 'z'
                 })
         })
-        selection.exit().remove();
     }
 
     render() {
