@@ -25,6 +25,15 @@ body a {
     color: hsla(60, 21%, 89%, 1);
 }
 
+#about {
+    text-align: center;
+}
+
+#about p {
+    max-width: 800px;
+    margin: 2em auto;
+}
+
 #content {
     display: flex;
     flex-direction: column;

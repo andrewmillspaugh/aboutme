@@ -10,10 +10,6 @@
         "url": "/skills"
       },
       {
-        "text": "/resume",
-        "url": "/resume"
-      },
-      {
         "text": "/about",
         "url": "/about"
       }

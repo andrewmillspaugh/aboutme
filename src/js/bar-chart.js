@@ -64,7 +64,7 @@ class BarChart extends HTMLElement {
     }
 
     _renderGroups() {
-        var currentOffset = { x: this.overhang, y: 0 }
+        var currentOffset = { x: 0, y: 0 }
         this.elements.groups = this.elements.drawing.selectAll('.group').data(this.technologies).join('g');
         this.elements.groups.classed('group', true)
         this.elements.groups.attr('transform', (technology, index) => {
