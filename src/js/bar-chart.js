@@ -37,11 +37,12 @@ class BarChart extends HTMLElement {
         const longSideDotCount = this.technologies.reduce((count, domain) => {
             return count + (domain[1].length + 1) * 3;
         }, 0) - 5;
+        this.overhang = this.orientation == 'portrait' ? 0 :
+            this.technologies[0][1][0][0].length * this.charWidth * Math.sin(this.textAngle);
         this.dotSize = Math.min(
             (this.shortSide - this.textboxWidth) / shortSideDotCount,
-            this.longSide / longSideDotCount
+            (this.longSide - this.overhang) / longSideDotCount
         );
-        console.log(7 * this.dotSize)
     }
 
     _renderSvg() {
@@ -55,7 +56,7 @@ class BarChart extends HTMLElement {
             .classed('drawing', true)
             .attr('transform', (_, index, nodes) => {
                 const size = nodes[index].getBoundingClientRect()
-                const x = this.offsetWidth / 2 - size.width / 2;
+                const x = (this.offsetWidth - size.width) / 2;
                 var y = this.orientation == 'landscape' ? this.offsetHeight : 0;
                 y -= this.offsetHeight / 2 - size.height / 2;
                 return `translate(${x}, ${y})`
@@ -63,7 +64,7 @@ class BarChart extends HTMLElement {
     }
 
     _renderGroups() {
-        var currentOffset = { x: 0, y: 0 }
+        var currentOffset = { x: this.overhang, y: 0 }
         this.elements.groups = this.elements.drawing.selectAll('.group').data(this.technologies).join('g');
         this.elements.groups.classed('group', true)
         this.elements.groups.attr('transform', (technology, index) => {
