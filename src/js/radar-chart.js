@@ -2,11 +2,11 @@
 class RadarChart extends HTMLElement {
     constructor() {
         super();
+        this.elements = {}
     }
 
     connectedCallback() {
         this.fontSize = parseInt(getComputedStyle(this).fontSize)
-        this.elements = {}
         window.addEventListener('resize', this.render.bind(this));
         window.addEventListener('orientationchange', this.render.bind(this));
         this.render()
@@ -27,10 +27,8 @@ class RadarChart extends HTMLElement {
     
     get chartRadius() {
         const charWidth = this.fontSize * 0.550; // TODO: Improve this rough estimate
-        console.log('the total radius is ' + this.totalRadius)
         const maxRadiiPerAngle = this.skills.map((skill, index) => {
             const skillWidth = skill[0].length * charWidth;
-            console.log(skillWidth)
             const angle = Math.PI / 2 - index * 2 * Math.PI / this.skills.length;
             const spacing = this.fontSize;
             if (index == 0 | index/this.skills.length == 0.5) return this.offsetHeight / 2 - 2 * this.fontSize;

@@ -6,6 +6,7 @@ eleventyNavigation:
   key: Mammals
   title: All of the Mammals
 ---
+<script type="module" src="/js/radar-chart.js" defer></script>
 <div id='heading'>
     <div id="title">
         {{ title }}

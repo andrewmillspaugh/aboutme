@@ -1,0 +1,22 @@
+bar-chart {
+    height: 50vh;
+    width: 80vw;
+    margin: 0 auto;
+    font-size: 0.8em;
+}
+
+bar-chart .emptyDot {
+    fill: hsla(60, 21%, 89%, 0.1);
+}
+
+bar-chart .fullDot {
+    fill: hsla(42, 61%, 78%, 1);
+}
+
+bar-chart .skillText {
+    fill: hsla(60, 21%, 89%, 1);
+}
+
+bar-chart .domainText {
+    fill: hsla(42, 61%, 78%, 1);
+}
