@@ -6,7 +6,6 @@ class RadarChart extends HTMLElement {
     }
 
     connectedCallback() {
-        this.fontSize = parseInt(getComputedStyle(this).fontSize)
         window.addEventListener('resize', this.render.bind(this));
         window.addEventListener('orientationchange', this.render.bind(this));
         this.render()
@@ -26,23 +25,25 @@ class RadarChart extends HTMLElement {
     }
     
     get chartRadius() {
-        const charWidth = this.fontSize * 0.550; // TODO: Improve this rough estimate
-        const maxRadiiPerAngle = this.skills.map((skill, index) => {
-            const skillWidth = skill[0].length * charWidth;
-            const angle = Math.PI / 2 - index * 2 * Math.PI / this.skills.length;
-            const spacing = this.fontSize;
-            if (index == 0 | index/this.skills.length == 0.5) return this.offsetHeight / 2 - 2 * this.fontSize;
-            return (this.offsetWidth / 2 - skillWidth) / Math.abs(Math.cos(angle)) - spacing;
-        });
-        console.log(Math.min(...maxRadiiPerAngle))
-        return Math.min(...maxRadiiPerAngle);
+        return this.textRadius - this.fontSize;
     }
 
     get textRadius() {
-        return this.chartRadius + this.fontSize;
+        const charWidth = this.fontSize * 0.56; // TODO: Improve this rough estimate
+        return Math.min(...this.skills.map((skill, index) => {
+            switch (index / this.skills.length) {
+                case 0: 
+                case 0.5: 
+                    return this.offsetHeight / 2 - 2 * this.fontSize; 
+                default:
+                    const angle = Math.PI / 2 - index * 2 * Math.PI / this.skills.length;
+                    const skillWidth = skill[0].length * charWidth;
+                    return (this.offsetWidth / 2 - skillWidth) / Math.abs(Math.cos(angle))
+            }
+        }))
     }
 
-    circleCoordinates(percentage, radius=this.chartRadius) {
+    circleCoordinates(percentage, radius = this.chartRadius) {
         const x = Math.sin(2 * Math.PI * (0.5 - percentage)) * radius;
         const y = Math.cos(2 * Math.PI * (0.5 - percentage)) * radius;
         return { x, y }
@@ -104,6 +105,7 @@ class RadarChart extends HTMLElement {
     }
 
     render() {
+        this.fontSize = parseInt(getComputedStyle(this).fontSize)
         this.renderSvg();
         this.renderAxes();
         this.renderLevels();

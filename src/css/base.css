@@ -8,16 +8,26 @@ body {
     background-color: hsla(110, 6%, 41%, 1);
     font-family: "dm";
     color: hsla(60, 21%, 89%, 1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding-top: 6em;
+    padding-bottom: 2em;
 }
 
-body.fixedsize {
+body#fixed {
     height: 100vh;
     width: 100vw;
     margin: 0;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body#scrollalble {
+    width: 100vw;
+    overflow: scroll;
 }
 
 body a {
@@ -32,20 +42,6 @@ body a {
 #about p {
     max-width: 800px;
     margin: 2em auto;
-}
-
-#content {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: space-evenly;
-    padding-top: 2em;
-    padding-bottom: 2em;
-    width: 100%;
-    box-sizing: border-box;
-    height: calc(100% - 2em);
-    overflow: hidden;
-    min-height: 0;
 }
 
     
@@ -110,8 +106,9 @@ radar-chart .skillmap {
         padding-top: 0;
     }
     radar-chart {
-        height: calc(80vmin - 2em);
-        width: calc(80vmin - 2em);
+        height: calc(100vh - 10em);
+        width: calc(100vh - 10em);
+        margin: 0 auto;
     }
 }
 
@@ -123,6 +120,7 @@ radar-chart .skillmap {
     radar-chart {
         height: calc(80vmin - 2em);
         width: calc(80vmin - 2em);
+        margin: 0 auto;
     }
 }
 
@@ -144,6 +142,9 @@ radar-chart .skillmap {
 }
 
 #navigation-header {
+    background-color: hsla(110, 6%, 41%, 0.5);
+    position: fixed;
+    top: 0;
     width: 100%;
     height: 2em;
     padding-top: 2em;

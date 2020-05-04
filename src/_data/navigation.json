@@ -1,16 +1,19 @@
 {
     "home": {
-        "text": "> cd ~/andrewmillspaugh",
-        "url": "/",
-        "external": "false" 
+        "text": "> cd /andrewmillspaugh",
+        "url": "/"
     },
     "pages": [
       {
-        "text": "/skills",
-        "url": "/skills"
+        "text": "~/technologies",
+        "url": "/technologies"
       },
       {
-        "text": "/about",
+        "text": "~/history",
+        "url": "/history"
+      },
+      {
+        "text": "~/about",
         "url": "/about"
       }
     ]

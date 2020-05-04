@@ -9,7 +9,8 @@ class BarChart extends HTMLElement {
         return [
             ['backend', [['scala', 0.7], ['python', 0.8], ['c++', 0.4]]],
             ['frontend', [['react', 0.7], ['typescript', 0.5], ['angular', 0.3]]],
-            ['data', [['keras', 0.5], ['r', 0.4], ['numpy', 0.3]]]
+            ['data', [['keras', 0.5], ['r', 0.4], ['numpy', 0.3]]],
+            ['platform', [['aws', 0.8], ['docker', 0.8], ['k8s', 0.3]]]
         ]
     }
 
@@ -20,7 +21,7 @@ class BarChart extends HTMLElement {
     }
 
     _setConstants() {
-        this.orientation = this.offsetWidth > this.offsetHeight ? 'landscape' : 'portrait';
+        this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
         this.longSide = this.orientation == 'landscape' ? this.offsetWidth : this.offsetHeight;
         this.shortSide = this.orientation == 'landscape' ? this.offsetHeight : this.offsetWidth;
         this.dotCount = 10;
@@ -118,10 +119,14 @@ class BarChart extends HTMLElement {
         }).join('circle');
         this.elements.fullDots.classed('fullDot', true);
         this.elements.fullDots
+            //.attr('visibility', 'hidden')
             .attr('cx', (_, index) => this.orientation == 'portrait' ? this.textboxWidth + this.dotSize + 1.5 * index * this.dotSize : 0)
             .attr('cy', (_, index) => this.orientation == 'landscape' ? -this.textboxWidth - this.dotSize - 1.5 * index * this.dotSize : 0)
             .attr('r', this.dotSize / 2)
             .attr('fill', 'white');
+            //.transition()
+            //.delay((_, index) => (index + 1) * 100)
+            //.attr('visibility', 'visible');
     }
 
     renderSkillText() {

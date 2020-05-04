@@ -2,9 +2,6 @@
 layout: layouts/base.njk
 title: andrew millspaugh
 subtitle: developer
-eleventyNavigation:
-  key: Mammals
-  title: All of the Mammals
 ---
 <div id='about'>
     <p>

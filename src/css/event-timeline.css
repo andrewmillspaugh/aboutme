@@ -1,0 +1,39 @@
+event-timeline {
+    width: 100%;
+    text-transform: lowercase;
+}
+
+event-timeline svg {
+    padding-top: calc(50vh - 6em);
+    padding-bottom: 40vh;
+    width: 100%;
+}
+event-timeline circle {
+    stroke: hsla(42, 61%, 78%, 1);
+    fill: hsla(110, 6%, 41%, 1);
+}
+
+event-timeline text {
+    fill: hsla(60, 21%, 89%, 1);
+}
+
+event-timeline line {
+    stroke: hsla(42, 61%, 78%, 1);
+}
+
+event-timeline .date {
+    fill: hsla(60, 21%, 89%, 0.5);
+}
+
+event-timeline .event {
+    opacity: 0.25;
+    transition: opacity 0.2s;
+}
+
+event-timeline .event.centered {
+    opacity: 1;
+}
+
+event-timeline .event.centered line {
+    opacity: 0.25;
+}

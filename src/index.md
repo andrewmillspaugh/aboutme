@@ -1,25 +1,16 @@
 ---
 layout: layouts/base.njk
-title: andrew millspaugh
-subtitle: developer
-eleventyNavigation:
-  key: Mammals
-  title: All of the Mammals
+bodyId: 'fixed'
 ---
 <script type="module" src="/js/radar-chart.js" defer></script>
 <div id='heading'>
-    <div id="title">
-        {{ title }}
-    </div>
-    <div id="subtitle">
-        {{ subtitle }}
-    </div>
+    <div id="title">andrew millspaugh</div>
+    <div id="subtitle">developer</div>
 </div>
 <radar-chart 
-    skill[infrastructure]=0.4
-    skill[architecture]=0.75 
+    skill[backend]=0.8
     skill[frontend]=0.6
-    skill[machine-learning]=0.4
-    skill[statistics]=0.4
-    skill[backend]=0.8 
-     />
+    skill[architecture]=0.75 
+    skill[infrastructure]=0.4
+    skill[bayesian-ml]=0.5
+    skill[deep-learning]=0.4 />
