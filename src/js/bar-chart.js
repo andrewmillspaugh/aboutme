@@ -20,10 +20,15 @@ class BarChart extends HTMLElement {
         window.addEventListener('orientationchange', this.render.bind(this));
     }
 
+    get align() {
+        return this.getAttribute('chart-align') ? this.getAttribute('chart-align') : 'center';
+    }
+
     _setConstants() {
-        this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
-        this.longSide = this.orientation == 'landscape' ? this.offsetWidth : this.offsetHeight;
-        this.shortSide = this.orientation == 'landscape' ? this.offsetHeight : this.offsetWidth;
+        this.orientation = this.clientWidth > this.clientHeight ? 'landscape' : 'portrait';
+        this.longSide = this.orientation == 'landscape' ? this.clientWidth : this.clientHeight;
+        console.log(this.longSide)
+        this.shortSide = this.orientation == 'landscape' ? this.clientHeight : this.clientWidth;
         this.dotCount = 10;
         this.fontSize = parseInt(getComputedStyle(this).fontSize);
         this.headerSize = this.fontSize * 1.5;
@@ -50,18 +55,6 @@ class BarChart extends HTMLElement {
         this.elements.svg = d3.select(this).selectAll('svg').data([1]).join('svg');
         this.elements.svg.attr('width', this.offsetWidth).attr('height', this.offsetHeight);
         this.elements.drawing = this.elements.svg.selectAll('.drawing').data([1]).join('g');
-    }
-
-    _centerDrawing() {
-        this.elements.drawing
-            .classed('drawing', true)
-            .attr('transform', (_, index, nodes) => {
-                const size = nodes[index].getBoundingClientRect()
-                const x = (this.offsetWidth - size.width) / 2;
-                var y = this.orientation == 'landscape' ? this.offsetHeight : 0;
-                y -= this.offsetHeight / 2 - size.height / 2;
-                return `translate(${x}, ${y})`
-            });
     }
 
     _renderGroups() {
@@ -149,6 +142,18 @@ class BarChart extends HTMLElement {
             .text(skill => skill)
     }
 
+    _centerDrawing() {
+        this.elements.drawing
+            .classed('drawing', true)
+            .attr('transform', (_, index, nodes) => {
+                const size = nodes[index].getBoundingClientRect()
+                const x = (this.offsetWidth - size.width) / 2;
+                var y = this.orientation == 'landscape' ? this.offsetHeight : 0;
+                y -= this.offsetHeight / 2 - size.height / 2;
+                return `translate(${x}, ${y})`
+            });
+    }
+
     render() {
         this._setConstants();
         this._renderSvg();
@@ -156,7 +161,9 @@ class BarChart extends HTMLElement {
         this._renderSkills();
         this._renderDots();
         this.renderSkillText();
-        this._centerDrawing();
+        if (this.align == 'center') {
+            this._centerDrawing();
+        }
     }
 }
 

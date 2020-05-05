@@ -13,8 +13,8 @@
         "url": "/history"
       },
       {
-        "text": "~/about",
-        "url": "/about"
+        "text": "~/resume",
+        "url": "/resume"
       }
     ]
   }

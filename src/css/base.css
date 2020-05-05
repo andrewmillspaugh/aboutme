@@ -10,6 +10,7 @@ body {
     color: hsla(60, 21%, 89%, 1);
     padding-top: 6em;
     padding-bottom: 2em;
+    margin: 0;
 }
 
 body#fixed {
@@ -175,4 +176,106 @@ radar-chart .skillmap {
 
 #navigation-header > nav > ul > li > a {
     box-sizing: border-box;
+}
+
+.resume-page {
+    color: hsla(110, 6%, 41%, 1);
+    font-size: 12px; /* TODO: Figure out what this actually should be */
+    width: calc(100vw - 6em);
+    height: calc((100vw - 6em) * 11/8.5);
+    background: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.resume-page .column {
+    width: 50%;
+    height: 100%;
+    padding: 4em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    overflow: auto;
+}
+
+#resume .resume-page .header {
+    font-size: 1.5em;
+    padding-bottom: 0.5em;
+}
+
+#resume .column .section {
+    min-height: 20%;
+}
+
+#resume .column .section.technologies {
+    padding: 2em;
+    box-sizing: border-box;
+}
+
+#resume bar-chart {
+    height: 100%;
+    width: 100%;
+    display: block;
+    font-size: 0.8em;
+    box-sizing: border-box;
+}
+
+#resume bar-chart svg {
+    overflow: visible; /* hack...TODO: Remove */
+}
+
+
+#resume bar-chart .emptyDot {
+    fill: hsla(110, 6%, 41%, 0.1);
+}
+
+#resume bar-chart .fullDot {
+    fill: hsla(110, 6%, 41%, 1);
+}
+
+#resume bar-chart .skillText {
+    fill: hsla(110, 6%, 41%, 1);
+}
+
+#resume bar-chart .domainText {
+    fill: hsla(110, 6%, 41%, 1);
+}
+
+#resume event-timeline {
+    height: 100%;
+    width: 100%;
+    display: block;
+    font-size: 1.2em;
+    box-sizing: border-box;
+}
+
+#resume event-timeline svg {
+    padding: 0;
+}
+
+#resume event-timeline circle {
+    stroke: hsla(110, 6%, 41%, 1);
+    fill: white;
+}
+
+#resume event-timeline text {
+    fill: hsla(110, 6%, 41%, 1);
+}
+
+#resume event-timeline line {
+    stroke: hsla(110, 6%, 41%, 1);
+}
+
+#resume event-timeline .date {
+    fill: hsla(110, 6%, 41%, 0.8);
+}
+
+#resume event-timeline .event {
+    opacity: 1;
+}
+
+#resume event-timeline line {
+    opacity: 1;
 }
