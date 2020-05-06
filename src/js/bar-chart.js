@@ -27,7 +27,6 @@ class BarChart extends HTMLElement {
     _setConstants() {
         this.orientation = this.clientWidth > this.clientHeight ? 'landscape' : 'portrait';
         this.longSide = this.orientation == 'landscape' ? this.clientWidth : this.clientHeight;
-        console.log(this.longSide)
         this.shortSide = this.orientation == 'landscape' ? this.clientHeight : this.clientWidth;
         this.dotCount = 10;
         this.fontSize = parseInt(getComputedStyle(this).fontSize);

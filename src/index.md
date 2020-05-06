@@ -13,4 +13,5 @@ bodyId: 'fixed'
     skill[architecture]=0.75 
     skill[infrastructure]=0.4
     skill[bayesian-ml]=0.5
-    skill[deep-learning]=0.4 />
+    skill[deep-learning]=0.4>
+</radar-chart>

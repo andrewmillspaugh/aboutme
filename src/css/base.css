@@ -5,11 +5,10 @@ html {
 }
   
 body {
-    background-color: hsla(110, 6%, 41%, 1);
+    background-color: hsla(110, 6%, 38%, 1);
     font-family: "dm";
     color: hsla(60, 21%, 89%, 1);
-    padding-top: 6em;
-    padding-bottom: 2em;
+    padding-top: 5em;
     margin: 0;
 }
 
@@ -21,9 +20,37 @@ body#fixed {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    justify-content: center;
+    justify-content: space-between;
     box-sizing: border-box;
     overflow: hidden;
+    padding-bottom: 5em;
+}
+
+body #content {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+footer {
+    width: 100%;
+    height: 5em;
+    padding-top: 0.5em;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+}
+
+body#fixed footer {
+    position: fixed;
+    bottom: 0;
 }
 
 body#scrollalble {
@@ -67,6 +94,15 @@ body a {
     font-size: 1.5em;
     text-align: center;
     flex: 0 0;
+}
+
+#resume-link {
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 0.75em;
+    text-align: center;
+    padding: 0.5em;
+    opacity: 0.5;
 }
 
 radar-chart {
@@ -125,29 +161,26 @@ radar-chart .skillmap {
     }
 }
 
-
-
 #social-links {
-    padding: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#social-links > svg {
-    padding: 15px;
-}
-
-#social-links > svg path {
-    fill: hsla(42, 61%, 78%, 1);
+#social-links > img {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: pointer;
 }
 
 #navigation-header {
-    background-color: hsla(110, 6%, 41%, 0.5);
+    background-color: hsla(110, 6%, 38%, 0.6);
     position: fixed;
     top: 0;
     width: 100%;
-    height: 2em;
+    height: 5em;
     padding-top: 2em;
     padding-left: 3em;
     padding-right: 3em;
@@ -179,46 +212,81 @@ radar-chart .skillmap {
 }
 
 .resume-page {
-    color: hsla(110, 6%, 41%, 1);
-    font-size: 12px; /* TODO: Figure out what this actually should be */
-    width: calc(100vw - 6em);
-    height: calc((100vw - 6em) * 11/8.5);
+    background-color: hsla(110, 6%, 38%, 1);
+    font-size: 9pt; /* TODO: Figure out what this actually should be */
+    width: 612pt;
+    height: 792pt;
     background: white;
     margin: 0 auto;
+    padding: 24pt;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.resume-page .content {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
 
+.resume-page .name {
+    font-size: 2.5em;
+}
+
+.resume-page .title {
+    font-size: 1.5em;
+}
+
+.resume-page .email {
+    font-size: 1.1em;
+    opacity: 0.6;
+    padding-top: 0.4em;
+    padding-bottom: 2em;
+}
+
+
 .resume-page .column {
     width: 50%;
     height: 100%;
-    padding: 4em;
+    padding: 10pt;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: start;
-    overflow: auto;
 }
 
-#resume .resume-page .header {
+.resume-page .education .date {
+    font-size: 0.75em;
+}
+
+.resume-page .education .degree {
+    font-size: 1.25em;
+}
+
+.resume-page .education .school {
+    font-size: 1em;
+}
+
+#resume .resume-page .section-header {
     font-size: 1.5em;
-    padding-bottom: 0.5em;
+    padding-bottom: 0.75em;
 }
 
 #resume .column .section {
-    min-height: 20%;
+    padding-bottom: 2em;
 }
 
 #resume .column .section.technologies {
-    padding: 2em;
-    box-sizing: border-box;
+    height: 20%;
 }
 
 #resume bar-chart {
     height: 100%;
     width: 100%;
     display: block;
-    font-size: 0.8em;
+    font-size: 8pt;
     box-sizing: border-box;
 }
 
@@ -228,26 +296,26 @@ radar-chart .skillmap {
 
 
 #resume bar-chart .emptyDot {
-    fill: hsla(110, 6%, 41%, 0.1);
+    fill: hsla(110, 6%, 38%, 0.1);
 }
 
 #resume bar-chart .fullDot {
-    fill: hsla(110, 6%, 41%, 1);
+    fill: hsla(110, 6%, 38%, 1);
 }
 
 #resume bar-chart .skillText {
-    fill: hsla(110, 6%, 41%, 1);
+    fill: hsla(110, 6%, 38%, 1);
 }
 
 #resume bar-chart .domainText {
-    fill: hsla(110, 6%, 41%, 1);
+    fill: hsla(110, 6%, 38%, 1);
 }
 
 #resume event-timeline {
     height: 100%;
     width: 100%;
     display: block;
-    font-size: 1.2em;
+    font-size: 10pt;
     box-sizing: border-box;
 }
 
@@ -278,4 +346,71 @@ radar-chart .skillmap {
 
 #resume event-timeline line {
     opacity: 1;
+}
+
+.resume-page .interests {
+    max-height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.resume-page .interests .category {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.resume-page .interests img {
+    height: 3em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    padding-left: 0;
+    padding-right: 1em;
+}
+
+
+@media print {
+    header#navigation-header {
+        display:none;
+    }
+    .resume-page {
+        margin: 0;
+        padding: 0;
+    }
+    body#resume {
+        margin: 0;
+        padding: 0;
+    }
+    body#resume #content {
+        display: block;
+    }
+    footer {
+        display: none;
+    }
+    body#resume .resume-page {
+        box-shadow: none;
+    }
+}
+
+body .resume-page {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+}
+body#resume {
+    background-color: white;
+    color: hsla(110, 6%, 41%, 1);
+    padding-bottom: 2em;
+}
+
+body#resume a {
+    color: hsla(110, 6%, 41%, 1);
+}
+
+body#resume #navigation-header {
+    background-color: hsla(0, 0%, 100%, 0.6);
+}
+
+body#resume footer {
+    display: none;
 }

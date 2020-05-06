@@ -11,6 +11,16 @@
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
         {% include "components/navigation.njk" %}
-        {{ content | safe }}
+        <div id='content'>
+            {{ content | safe }}
+        </div>
+        <footer>
+            <div id='social-links'>
+                <img src='/images/linkedin.svg' onClick='window.open("https://linkedin.com/in/andrewmillspaugh")'/>
+                <img src='/images/github.svg' onClick='window.open("https://github.com/andrewmillspaugh")'/>
+                <img src='/images/twitter.svg' onClick='window.open("https://twitter.com/armillspaugh")'/>
+            </div>
+            <a id='resume-link' href='/resume'>get a printable version</a>
+        </footer>
     </body>
 </html>
